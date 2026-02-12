@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dfpbfa1q5jtms"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gv5m4"]
+size = Vector2(55, 70)
+
+[node name="World" type="Node2D" unique_id=338050516]
+position = Vector2(-1, -1)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1914903236]
+
+[node name="player" type="CharacterBody2D" parent="." unique_id=1051314191]
+position = Vector2(577, 324)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player" unique_id=1547746348]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_gv5m4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player" unique_id=1899387810]
+position = Vector2(-2, 0)
+
+[node name="AudioListener2D" type="AudioListener2D" parent="player" unique_id=226668085]
+position = Vector2(-3, 1)
+
+[node name="Camera2D" type="Camera2D" parent="player" unique_id=573087532]
