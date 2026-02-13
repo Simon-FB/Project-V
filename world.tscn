@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dfpbfa1q5jtms"]
+[gd_scene format=4 uid="uid://dfpbfa1q5jtms"]
 
 [ext_resource type="Texture2D" uid="uid://6pb45w1ofsq2" path="res://tileset_brick.png" id="1_f3sb7"]
 
@@ -205,6 +205,7 @@ size = Vector2(55, 70)
 position = Vector2(-1, -1)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1914903236]
+tile_map_data = PackedByteArray("AAAFAAUAAAAEAAIAAAAGAAUAAAAEAAIAAAAHAAUAAAAEAAIAAAAIAAUAAAAEAAIAAAAJAAUAAAAEAAIAAAAKAAUAAAAEAAIAAAALAAUAAAAEAAIAAAAMAAUAAAAEAAIAAAANAAUAAAAEAAIAAAAOAAUAAAAEAAIAAAAPAAUAAAAEAAIAAAAQAAUAAAAEAAIAAAARAAUAAAAEAAIAAAASAAUAAAAEAAIAAAATAAUAAAAEAAIAAAAUAAUAAAAEAAIAAAAVAAUAAAAEAAIAAAAWAAUAAAAEAAIAAAAXAAUAAAAEAAIAAAAYAAUAAAAEAAIAAAAZAAUAAAAEAAIAAAAaAAUAAAAEAAIAAAAbAAUAAAACAAMAAAA=")
 tile_set = SubResource("TileSet_tlwt5")
 
 [node name="player" type="CharacterBody2D" parent="." unique_id=1051314191]
@@ -216,6 +217,7 @@ shape = SubResource("RectangleShape2D_gv5m4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player" unique_id=1899387810]
 position = Vector2(-2, 0)
+animation = &"new_animation"
 
 [node name="AudioListener2D" type="AudioListener2D" parent="player" unique_id=226668085]
 position = Vector2(-3, 1)
