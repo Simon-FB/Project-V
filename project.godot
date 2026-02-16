@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="Project_V"
+run/main_scene="uid://dfpbfa1q5jtms"
 config/features=PackedStringArray("4.6", "Forward Plus")
+boot_splash/bg_color=Color(1, 1, 1, 1)
 config/icon="res://icon.svg"
+
+[debug]
+
+shapes/navigation/3d/link_connection_color=Color(0.3083999, 0.30839992, 0.30839983, 1)
 
 [physics]
 
@@ -21,3 +27,4 @@ config/icon="res://icon.svg"
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+environment/defaults/default_clear_color=Color(0.5752141, 0.27991512, 0.33842695, 1)
