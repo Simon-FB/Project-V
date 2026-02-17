@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1rm1s73svj7l"
-path="res://.godot/imported/tileset_brick.png-9baa29125174bdee9497d92112abeec8.ctex"
+uid="uid://bu7yosl10yogg"
+path="res://.godot/imported/brick_wall_torch1.png-ed7bb35f5fa4745383c37c2f34ce0809.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tilesets/tileset_brick.png"
-dest_files=["res://.godot/imported/tileset_brick.png-9baa29125174bdee9497d92112abeec8.ctex"]
+source_file="res://sprites/brick_walls_animated/brick_wall_torch1.png"
+dest_files=["res://.godot/imported/brick_wall_torch1.png-ed7bb35f5fa4745383c37c2f34ce0809.ctex"]
 
 [params]
 
