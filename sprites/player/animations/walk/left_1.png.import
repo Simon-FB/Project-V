@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2aavxf12xy7d"
-path="res://.godot/imported/knight_2D_left.png-c37cb9838d064dc1c504b48fe01b22a8.ctex"
+uid="uid://mshrdw2c3etn"
+path="res://.godot/imported/left_1.png-018ac50f958d6ee7b46d889233764a03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/player/knight_2D_left.png"
-dest_files=["res://.godot/imported/knight_2D_left.png-c37cb9838d064dc1c504b48fe01b22a8.ctex"]
+source_file="res://sprites/player/animations/walk/left_1.png"
+dest_files=["res://.godot/imported/left_1.png-018ac50f958d6ee7b46d889233764a03.ctex"]
 
 [params]
 
