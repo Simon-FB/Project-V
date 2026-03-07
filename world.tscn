@@ -43,6 +43,12 @@
 [ext_resource type="Texture2D" uid="uid://bw6hyh4ssx00w" path="res://sprites/player/animations/walk/up_right_2.png" id="41_3fh52"]
 [ext_resource type="Texture2D" uid="uid://blf6mam6jxq2" path="res://sprites/player/animations/walk/up_right_3.png" id="42_8f1f8"]
 [ext_resource type="Texture2D" uid="uid://b8725bkts1b4" path="res://sprites/player/animations/walk/up_right_4.png" id="43_lxwtw"]
+[ext_resource type="Script" uid="uid://yunwvppcg3wy" path="res://scripts/Slime.gd" id="44_55kwu"]
+[ext_resource type="Texture2D" uid="uid://cgpijtq2buv2p" path="res://sprites/slime/idle_1.png" id="44_nx736"]
+[ext_resource type="Texture2D" uid="uid://dimqsfu7g4blh" path="res://sprites/slime/idle_2.png" id="45_55kwu"]
+[ext_resource type="Texture2D" uid="uid://12pyjkd70a51" path="res://sprites/slime/idle_3.png" id="46_f3o6s"]
+[ext_resource type="Texture2D" uid="uid://bvvbr65thqwbj" path="res://sprites/slime/idle_4.png" id="47_w4lh7"]
+[ext_resource type="Texture2D" uid="uid://dhgbu1t26dlny" path="res://sprites/slime/idle_5.png" id="48_k3lar"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aqk2v"]
 texture = ExtResource("1_tlwt5")
@@ -430,6 +436,43 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_olr1q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("44_nx736")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_55kwu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_f3o6s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_55kwu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_nx736")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_w4lh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_k3lar")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_w4lh7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q42o5"]
+size = Vector2(29, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_55kwu"]
+
 [node name="Node2D" type="Node2D" unique_id=338050516]
 
 [node name="map" type="TileMapLayer" parent="." unique_id=1914903236]
@@ -445,10 +488,10 @@ tile_set = SubResource("TileSet_aqk2v")
 [node name="player" type="CharacterBody2D" parent="." unique_id=1051314191]
 z_index = 1
 position = Vector2(219, 289)
-collision_mask = 6
+collision_mask = 15
 script = ExtResource("2_tlwt5")
 
-[node name="Collision box" type="CollisionShape2D" parent="player" unique_id=1547746348]
+[node name="Collision_player" type="CollisionShape2D" parent="player" unique_id=1547746348]
 position = Vector2(0, 8.5)
 shape = SubResource("CircleShape2D_tlwt5")
 
@@ -462,3 +505,33 @@ zoom = Vector2(4, 4)
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_bo7i5")
 animation = &"idle_down"
+
+[node name="Dash_time" type="Timer" parent="player" unique_id=2096179502]
+wait_time = 0.5
+one_shot = true
+
+[node name="Dash_Cooldown" type="Timer" parent="player" unique_id=60693380]
+one_shot = true
+
+[node name="slime" type="CharacterBody2D" parent="." unique_id=942148459]
+position = Vector2(312, 319)
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("44_55kwu")
+
+[node name="Slime_Anim" type="AnimatedSprite2D" parent="slime" unique_id=1731687928]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_olr1q")
+animation = &"idle"
+
+[node name="Collision_Slime" type="CollisionShape2D" parent="slime" unique_id=833492482]
+position = Vector2(-0.5, 4)
+shape = SubResource("RectangleShape2D_q42o5")
+
+[node name="Aggro_radius" type="Area2D" parent="slime" unique_id=1678602998]
+scale = Vector2(9, 9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="slime/Aggro_radius" unique_id=2017084333]
+shape = SubResource("RectangleShape2D_55kwu")
+
+[connection signal="body_entered" from="slime/Aggro_radius" to="slime" method="_on_aggro_radius_body_entered"]
