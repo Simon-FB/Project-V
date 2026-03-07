@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/bg_color=Color(1, 1, 1, 1)
 config/icon="res://icon.svg"
 
+[autoload]
+
+Player="*uid://vr4yimix706w"
+
 [debug]
 
 shapes/navigation/3d/link_connection_color=Color(0.3083999, 0.30839992, 0.30839983, 1)

@@ -458,7 +458,7 @@ shape = SubResource("CircleShape2D_tlwt5")
 scale = Vector2(1.0111644, 0.9584214)
 zoom = Vector2(4, 4)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player" unique_id=259513561]
+[node name="Player_Anim" type="AnimatedSprite2D" parent="player" unique_id=259513561]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_bo7i5")
 animation = &"idle_down"
