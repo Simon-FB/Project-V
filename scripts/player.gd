@@ -4,11 +4,14 @@ class_name player_
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Player_Anim.play("idle_right")
+	$Anim.play("idle_right")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
+	#GET POSITION
+	Player.position = to_global($Collision.position)
 	
 	#BASE MOVEMENT
 	var input_direction = Input.get_vector("left","right","up","down")
@@ -18,54 +21,54 @@ func _process(delta: float) -> void:
 	#WALK AND IDLE
 	match input_direction[0]:
 		1.0: 
-			$Player_Anim.play("walk_right")
+			$Anim.play("walk_right")
 			Player.last_direction = "right"
 		-1.0:
-			$Player_Anim.play("walk_left")
+			$Anim.play("walk_left")
 			Player.last_direction = "left"
 		_:
 			match input_direction[1]:
 				1.0:
-					$Player_Anim.play("walk_down")
+					$Anim.play("walk_down")
 					Player.last_direction = "down"
 					
 				-1.0:
-					$Player_Anim.play("walk_up")
+					$Anim.play("walk_up")
 					Player.last_direction = "up"
 				_: 
 					if input_direction[0] > 0:
 						if input_direction[1] > 0:
-							$Player_Anim.play("walk_down_right")
+							$Anim.play("walk_down_right")
 							Player.last_direction = "down_right"
 						if input_direction[1] < 0:
-							$Player_Anim.play("walk_up_right")
+							$Anim.play("walk_up_right")
 							Player.last_direction = "up_right"
 					if input_direction[0] < 0:
 						if input_direction[1] > 0:
-							$Player_Anim.play("walk_down_left")
+							$Anim.play("walk_down_left")
 							Player.last_direction = "down_left"
 						if input_direction[1] < 0:
-							$Player_Anim.play("walk_up_left")
+							$Anim.play("walk_up_left")
 							Player.last_direction = "up_left"
 	#IDLE
 					if input_direction[0] == 0.0 and input_direction[1] == 0.0:
 						match Player.last_direction:
 							"right":
-								$Player_Anim.play("idle_right")
+								$Anim.play("idle_right")
 							"left":
-								$Player_Anim.play("idle_left")
+								$Anim.play("idle_left")
 							"up":
-								$Player_Anim.play("idle_up")
+								$Anim.play("idle_up")
 							"down":
-								$Player_Anim.play("idle_down")
+								$Anim.play("idle_down")
 							"up_right":
-								$Player_Anim.play("idle_up_right")
+								$Anim.play("idle_up_right")
 							"up_left":
-								$Player_Anim.play("idle_up_left")
+								$Anim.play("idle_up_left")
 							"down_right":
-								$Player_Anim.play("idle_down_right")
+								$Anim.play("idle_down_right")
 							"down_left":
-								$Player_Anim.play("idle_down_left")
+								$Anim.play("idle_down_left")
 	
 	
 	#PLAYER ACTIONS
@@ -75,7 +78,7 @@ func _process(delta: float) -> void:
 			Player.speed = 9000
 			$Dash_time.start(Player.dash_time)
 			Player.dash_active = true
-			$Player_Anim.speed_scale = 2.0
+			$Anim.speed_scale = 2.0
 			
 		
 		if $Dash_time.time_left == 0.0 and Player.dash_active:
@@ -83,11 +86,12 @@ func _process(delta: float) -> void:
 			$Dash_Cooldown.start(Player.dash_cooldown)
 			Player.dash_active = false
 			Player.dash_OnCooldown = true
-			$Player_Anim.speed_scale = 1.0
+			$Anim.speed_scale = 1.0
 			
 		if $Dash_Cooldown.time_left == 0.0 and Player.dash_OnCooldown:
 			Player.dash_OnCooldown = false
-
+			
+			
 	#BLOCK / PARRY (crazy ass deflects)
 	#Ideas
 	# shield has 3 charges

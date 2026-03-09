@@ -55,10 +55,12 @@ dash={
 
 [layer_names]
 
-2d_render/layer_1="Entity"
-2d_render/layer_2="Walls/Ground"
-2d_render/layer_3="Props"
-2d_render/layer_4="Go through entity"
+2d_physics/layer_1="Entity"
+2d_navigation/layer_1="floor"
+2d_physics/layer_2="Walls/Ground"
+2d_physics/layer_3="Props"
+2d_physics/layer_4="Go-through entity"
+2d_physics/layer_5="Attacks"
 
 [physics]
 
