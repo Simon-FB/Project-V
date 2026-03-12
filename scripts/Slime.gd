@@ -3,6 +3,8 @@ extends CharacterBody2D
 var hostile = false
 var spawn_slimeball = preload("res://slimeball.tscn")
 var slimeball_instance
+var next_point
+var new_delay
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,7 +19,7 @@ func _physics_process(delta: float) -> void:
 	if hostile == true:
 		$Pathfinder.target_position = Player.position
 		$Pathfinder.get_next_path_position()
-		var next_point = to_local($Pathfinder.get_current_navigation_path()[1]).normalized()
+		next_point = to_local($Pathfinder.get_current_navigation_path()[1]).normalized()
 		
 		velocity = next_point * delta * Ennemy.slime_speed
 		move_and_slide()
@@ -25,7 +27,10 @@ func _physics_process(delta: float) -> void:
 		#attack
 		if $Pathfinder.distance_to_target() > 50:
 			if $Attack_delay.is_stopped():
-				$Attack_delay.start(randi() % 6)
+				new_delay = randi() % 6
+				while new_delay < 3 :
+					new_delay = randi() % 6
+				$Attack_delay.start(new_delay)
 				shoot_slimeball()
 				
 func shoot_slimeball() -> void:
@@ -38,4 +43,3 @@ func shoot_slimeball() -> void:
 func _on_aggro_radius_body_entered(body: Node2D) -> void:
 	if body is player_:
 		hostile = true
-		

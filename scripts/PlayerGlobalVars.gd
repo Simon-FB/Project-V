@@ -7,6 +7,8 @@ var health = 1
 var last_direction = ""
 var speed = 3000
 var position
+var dash_bonus = 6000
+var dash_canceled = false
 
 	#DASH
 var dash_time = 0.5

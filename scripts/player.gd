@@ -74,21 +74,24 @@ func _process(delta: float) -> void:
 	#PLAYER ACTIONS
 	#DASH (no iframes)
 	if (true):
-		if Input.is_key_pressed(KEY_SPACE) and not(Player.dash_OnCooldown) and not(Player.dash_active):
-			Player.speed = 9000
+		if Player.dash_canceled == true:
+			$Anim.speed_scale = 1.0
+		
+		if Input.is_key_pressed(KEY_SPACE) and not(Player.dash_canceled) and not(Player.dash_OnCooldown) and not(Player.dash_active):
+			Player.speed += Player.dash_bonus
 			$Dash_time.start(Player.dash_time)
 			Player.dash_active = true
 			$Anim.speed_scale = 2.0
 			
 			
-		if $Dash_time.is_stopped() and Player.dash_active:
-			Player.speed = 3000
+		if $Dash_time.is_stopped() and Player.dash_active and not(Player.dash_canceled):
+			Player.speed -= Player.dash_bonus
 			$Dash_Cooldown.start(Player.dash_cooldown)
 			Player.dash_active = false
 			Player.dash_OnCooldown = true
 			$Anim.speed_scale = 1.0
 			
-		if $Dash_Cooldown.is_stopped() and Player.dash_OnCooldown:
+		if $Dash_Cooldown.is_stopped() and Player.dash_OnCooldown and not(Player.dash_canceled):
 			Player.dash_OnCooldown = false
 			
 			
