@@ -1,7 +1,7 @@
 extends Node
 
 
-var health = 1 # 1 hit kill
+var health = 1
 
 #MOVEMENT
 var last_direction = ""

@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bcbckntsuxeaf"]
+
+[ext_resource type="Script" uid="uid://csgcyw0plbt76" path="res://scripts/slimeball.gd" id="1_7oi3l"]
+[ext_resource type="Texture2D" uid="uid://dh1fyp8b2kpmc" path="res://sprites/slime/slimeball_1.png" id="2_twbif"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cs63s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_twbif")
+}],
+"loop": true,
+"name": &"launched",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"splat",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qw36m"]
+radius = 3.0
+
+[node name="Node2D" type="Node2D" unique_id=1513720772]
+
+[node name="Slimeball" type="CharacterBody2D" parent="." unique_id=1643698390]
+collision_layer = 16
+collision_mask = 6
+script = ExtResource("1_7oi3l")
+
+[node name="Slimeball_anim" type="AnimatedSprite2D" parent="Slimeball" unique_id=158129456]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_cs63s")
+animation = &"launched"
+
+[node name="splat_zone" type="Area2D" parent="Slimeball" unique_id=1822737385]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slimeball/splat_zone" unique_id=1782544229]
+polygon = PackedVector2Array(-7, 1, -3, 5, 5, 5, 7, 0, 3, -3, -2, -3)
+
+[node name="hitbox" type="CollisionShape2D" parent="Slimeball" unique_id=1228374679]
+shape = SubResource("CircleShape2D_qw36m")
+
+[node name="Decay_time" type="Timer" parent="Slimeball" unique_id=630551026]
+wait_time = 5.0
+one_shot = true

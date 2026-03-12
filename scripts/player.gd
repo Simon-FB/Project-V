@@ -11,7 +11,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	#GET POSITION
-	Player.position = to_global($Collision.position)
+	Player.position = global_position
 	
 	#BASE MOVEMENT
 	var input_direction = Input.get_vector("left","right","up","down")
@@ -80,15 +80,15 @@ func _process(delta: float) -> void:
 			Player.dash_active = true
 			$Anim.speed_scale = 2.0
 			
-		
-		if $Dash_time.time_left == 0.0 and Player.dash_active:
+			
+		if $Dash_time.is_stopped() and Player.dash_active:
 			Player.speed = 3000
 			$Dash_Cooldown.start(Player.dash_cooldown)
 			Player.dash_active = false
 			Player.dash_OnCooldown = true
 			$Anim.speed_scale = 1.0
 			
-		if $Dash_Cooldown.time_left == 0.0 and Player.dash_OnCooldown:
+		if $Dash_Cooldown.is_stopped() and Player.dash_OnCooldown:
 			Player.dash_OnCooldown = false
 			
 			
