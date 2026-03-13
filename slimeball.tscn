@@ -51,10 +51,6 @@ shape = SubResource("CircleShape2D_qw36m")
 wait_time = 5.0
 one_shot = true
 
-[node name="Slow_time" type="Timer" parent="Slimeball" unique_id=1247364494]
-one_shot = true
-
 [connection signal="body_entered" from="Slimeball/splat_zone" to="Slimeball" method="_on_splat_zone_body_entered"]
 [connection signal="body_exited" from="Slimeball/splat_zone" to="Slimeball" method="_on_splat_zone_body_exited"]
 [connection signal="timeout" from="Slimeball/Decay_time" to="Slimeball" method="_on_decay_time_timeout"]
-[connection signal="timeout" from="Slimeball/Slow_time" to="Slimeball" method="_on_slow_time_timeout"]

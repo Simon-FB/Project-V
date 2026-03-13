@@ -1,11 +1,16 @@
 extends Node
 
 var spawn_player = preload("res://player.tscn")
+var load_effect_maneger = preload("res://effect_manager.tscn")
 var spawn_slime = preload("res://slime.tscn")
+
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	load_effect_maneger = load_effect_maneger.instantiate()
+	add_child(load_effect_maneger)
 
 	spawn_player = spawn_player.instantiate()
 	spawn_player.global_position = Vector2(200.0,280.0)

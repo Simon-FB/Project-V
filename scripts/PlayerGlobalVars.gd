@@ -2,16 +2,14 @@ extends Node
 
 
 var health = 1
+var anim_speed = 1.0
 
 #MOVEMENT
 var last_direction = ""
-var speed = 3000
+var base_speed = 30
 var position
-var dash_bonus = 6000
-var dash_canceled = false
+var speed_modifier = 100.0000
+var can_dash = true
 
-	#DASH
-var dash_time = 0.5
-var dash_cooldown = 1
-var dash_OnCooldown = false
-var dash_active = false
+#EFFECTS
+var effect_list = []

@@ -13,9 +13,12 @@ func _process(delta: float) -> void:
 	#GET POSITION
 	Player.position = global_position
 	
+	#ANIM SPEED CHANGES
+	$Anim.speed_scale = Player.anim_speed
+	
 	#BASE MOVEMENT
 	var input_direction = Input.get_vector("left","right","up","down")
-	velocity = input_direction * Player.speed * delta
+	velocity = input_direction * Player.base_speed * Player.speed_modifier * delta
 	move_and_slide()
 	
 	#WALK AND IDLE
@@ -70,30 +73,15 @@ func _process(delta: float) -> void:
 							"down_left":
 								$Anim.play("idle_down_left")
 	
+	#DASH (no iframes)
+	if Input.is_key_pressed(KEY_SPACE) and Player.can_dash:
+		Player.effect_list.append("dash")
+		
+	print(Player.speed_modifier)
 	
 	#PLAYER ACTIONS
-	#DASH (no iframes)
-	if (true):
-		if Player.dash_canceled == true:
-			$Anim.speed_scale = 1.0
-		
-		if Input.is_key_pressed(KEY_SPACE) and not(Player.dash_canceled) and not(Player.dash_OnCooldown) and not(Player.dash_active):
-			Player.speed += Player.dash_bonus
-			$Dash_time.start(Player.dash_time)
-			Player.dash_active = true
-			$Anim.speed_scale = 2.0
-			
-			
-		if $Dash_time.is_stopped() and Player.dash_active and not(Player.dash_canceled):
-			Player.speed -= Player.dash_bonus
-			$Dash_Cooldown.start(Player.dash_cooldown)
-			Player.dash_active = false
-			Player.dash_OnCooldown = true
-			$Anim.speed_scale = 1.0
-			
-		if $Dash_Cooldown.is_stopped() and Player.dash_OnCooldown and not(Player.dash_canceled):
-			Player.dash_OnCooldown = false
-			
+	#ATTACK
+	
 			
 	#BLOCK / PARRY (crazy ass deflects)
 	#Ideas
@@ -112,4 +100,3 @@ func _process(delta: float) -> void:
 		# vs punch grabs arm and tries to judo throw but arm rips off (can't use bow anymore)
 		# vs grapple hook grabs the hook and pull it, enemy falls on the ground (stuns)
 		
-	#ATTACK
