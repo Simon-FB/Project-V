@@ -26,31 +26,36 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_qw36m"]
 radius = 3.0
 
-[node name="Node2D" type="Node2D" unique_id=1513720772]
+[node name="Slimeball" type="Node2D" unique_id=1513720772]
 
-[node name="Slimeball" type="CharacterBody2D" parent="." unique_id=1643698390]
-collision_layer = 16
-collision_mask = 6
+[node name="slimeball" type="CharacterBody2D" parent="." unique_id=1643698390]
+show_behind_parent = true
+visibility_layer = 2
+collision_layer = 0
+collision_mask = 23
 wall_min_slide_angle = 0.0
 script = ExtResource("1_7oi3l")
 
-[node name="Slimeball_anim" type="AnimatedSprite2D" parent="Slimeball" unique_id=158129456]
+[node name="Slimeball_anim" type="AnimatedSprite2D" parent="slimeball" unique_id=158129456]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_cs63s")
 animation = &"splat"
 
-[node name="splat_zone" type="Area2D" parent="Slimeball" unique_id=1822737385]
+[node name="splat_zone" type="Area2D" parent="slimeball" unique_id=1822737385]
+collision_layer = 4
+collision_mask = 31
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slimeball/splat_zone" unique_id=1782544229]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="slimeball/splat_zone" unique_id=1782544229]
 polygon = PackedVector2Array(-7, 0, -7, 6, 8, 6, 8, 0, 3, -3, -2, -3)
 
-[node name="hitbox" type="CollisionShape2D" parent="Slimeball" unique_id=1228374679]
+[node name="hitbox" type="CollisionShape2D" parent="slimeball" unique_id=1228374679]
+visibility_layer = 2
 shape = SubResource("CircleShape2D_qw36m")
 
-[node name="Decay_time" type="Timer" parent="Slimeball" unique_id=630551026]
+[node name="Decay_time" type="Timer" parent="slimeball" unique_id=630551026]
 wait_time = 5.0
 one_shot = true
 
-[connection signal="body_entered" from="Slimeball/splat_zone" to="Slimeball" method="_on_splat_zone_body_entered"]
-[connection signal="body_exited" from="Slimeball/splat_zone" to="Slimeball" method="_on_splat_zone_body_exited"]
-[connection signal="timeout" from="Slimeball/Decay_time" to="Slimeball" method="_on_decay_time_timeout"]
+[connection signal="body_entered" from="slimeball/splat_zone" to="slimeball" method="_on_splat_zone_body_entered"]
+[connection signal="body_exited" from="slimeball/splat_zone" to="slimeball" method="_on_splat_zone_body_exited"]
+[connection signal="timeout" from="slimeball/Decay_time" to="slimeball" method="_on_decay_time_timeout"]

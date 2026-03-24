@@ -15,6 +15,10 @@ one_shot = true
 [node name="Slow_time" type="Timer" parent="." unique_id=1451049068]
 one_shot = true
 
+[node name="Invincible_time" type="Timer" parent="." unique_id=1507018453]
+one_shot = true
+
 [connection signal="timeout" from="Dash_time" to="." method="_on_dash_time_timeout"]
 [connection signal="timeout" from="Dash_Cooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="Slow_time" to="." method="_on_slow_time_timeout"]
+[connection signal="timeout" from="Invincible_time" to="." method="_on_invincibility_time_timeout"]

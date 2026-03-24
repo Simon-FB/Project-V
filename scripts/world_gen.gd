@@ -1,21 +1,49 @@
 extends Node
 
-var spawn_player = preload("res://player.tscn")
-var load_effect_maneger = preload("res://effect_manager.tscn")
-var spawn_slime = preload("res://slime.tscn")
-
-
+var spawn_player
+var load_effect_maneger
+var spawn_slime
+var load_deathscreen 
+var deathscreen_loaded
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	world_init()
+
 	
+func _process(_delta: float) -> void:
+	if Player.health < 1 and not(deathscreen_loaded):
+		load_deathscreen = preload("res://death_screen.tscn")
+		load_deathscreen = load_deathscreen.instantiate()
+		add_child(load_deathscreen)
+		deathscreen_loaded = true
+		
+	if world.reset_command:
+		world.reset_command = false
+		world_init()
+	
+
+func world_init():
+	Player.health = 1
+	deathscreen_loaded = false
+	world.reset = true
+	world.reset_command = false
+	$world_reset_timer.start(0.1)
+	
+
+func _on_world_reset_timer_timeout() -> void:
+	world.reset = false
+	
+	spawn_player = preload("res://player.tscn")
+	load_effect_maneger = preload("res://effect_manager.tscn")
+	spawn_slime = preload("res://slime.tscn")
+
 	load_effect_maneger = load_effect_maneger.instantiate()
 	add_child(load_effect_maneger)
-
+	
 	spawn_player = spawn_player.instantiate()
 	spawn_player.global_position = Vector2(200.0,280.0)
 	add_child(spawn_player)
-
 	
 	spawn_slime = spawn_slime.instantiate()
 	spawn_slime.global_position = Vector2(312.0,312.0)

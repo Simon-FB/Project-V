@@ -344,11 +344,13 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Node2D" type="Node2D" unique_id=1651161240]
+[node name="Player" type="Node2D" unique_id=1651161240]
 
 [node name="player" type="CharacterBody2D" parent="." unique_id=1587813144]
-z_index = 1
-collision_mask = 15
+visibility_layer = 2
+z_index = 100
+collision_layer = 16
+collision_mask = 31
 script = ExtResource("1_ny14h")
 
 [node name="Collision" type="CollisionShape2D" parent="player" unique_id=357564951]
@@ -366,9 +368,11 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_7c55y")
 animation = &"idle_down"
 
-[node name="Hitbox" type="Area2D" parent="player" unique_id=1932277933]
+[node name="Hurtbox_player" type="Area2D" parent="player" unique_id=1932277933]
 collision_mask = 16
 
-[node name="Hitbox_shape" type="CollisionPolygon2D" parent="player/Hitbox" unique_id=1304604683]
+[node name="Hurtbox_shape" type="CollisionPolygon2D" parent="player/Hurtbox_player" unique_id=1304604683]
 scale = Vector2(0.68169785, 1.2800195)
 polygon = PackedVector2Array(-4.4007874, 9.374863, -4.4007874, 6.2499084, -5.8677063, 5.4686737, -8.801544, 5.4686737, -8.801544, 1.5624847, -7.3346252, 1.5624847, -7.3346252, -0.78123474, -8.801544, -0.78123474, -8.801544, -8.593613, -7.3346252, -9.374847, 7.3346252, -9.374847, 8.801544, -8.593613, 8.801544, -0.78123474, 7.3346252, -0.78123474, 7.3346252, 1.5624847, 8.801544, 1.5624847, 8.801544, 5.4686737, 5.8677063, 5.4686737, 4.4007874, 6.2499084, 4.4007874, 9.374863)
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="player" unique_id=1185854022]

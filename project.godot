@@ -14,12 +14,12 @@ config/name="Project_V"
 run/main_scene="uid://dfpbfa1q5jtms"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/bg_color=Color(1, 1, 1, 1)
-config/icon="res://icon.svg"
 
 [autoload]
 
 Player="*uid://vr4yimix706w"
 Ennemy="*uid://vs0be7h67kal"
+world="*uid://bcxqbpoi8q61m"
 
 [debug]
 
@@ -55,12 +55,12 @@ dash={
 
 [layer_names]
 
-2d_physics/layer_1="Entity"
+2d_physics/layer_1="Walls/Ground"
 2d_navigation/layer_1="floor"
-2d_physics/layer_2="Walls/Ground"
-2d_physics/layer_3="Props"
+2d_physics/layer_2="Props"
+2d_physics/layer_3="Attacks"
 2d_physics/layer_4="Go-through entity"
-2d_physics/layer_5="Attacks"
+2d_physics/layer_5="Entity"
 
 [physics]
 

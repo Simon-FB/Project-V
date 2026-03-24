@@ -3,8 +3,13 @@ extends CharacterBody2D
 var hostile = false
 var spawn_slimeball = preload("res://slimeball.tscn")
 var slimeball_instance
+var spawn_slimespike = preload("res://slimespike.tscn")
+var slimespike_instance
 var next_point
 var new_delay
+var rand_attack = 0
+var specific_cooldown = 0
+var combo = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,7 +19,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if world.reset == true:
+		queue_free()
 	
+	if Player.health < 1:
+		hostile = false
 	# HOSTILE PATHFINDING (basic)
 	if hostile == true:
 		$Pathfinder.target_position = Player.position
@@ -25,21 +34,47 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		
 		#attack
-		if $Pathfinder.distance_to_target() > 50:
-			if $Attack_delay.is_stopped():
-				new_delay = randi() % 6
-				while new_delay < 3 :
-					new_delay = randi() % 6
-				$Attack_delay.start(new_delay)
-				shoot_slimeball()
+		if Player.effect_list.has("slow") and not combo:
+				rand_attack = 3
+				$Attack_delay.stop()
+				print("cancel")
+				$Combo_delay.start(4)
+				combo = true
+				
+		if $Attack_delay.is_stopped():
+			match rand_attack:
+				0,1,2:
+					shoot_slimeball()
+					shoot_slimeball()
+					shoot_slimeball()
+					
+					specific_cooldown = 0.5
+				3:
+					use_slimespike()
+					specific_cooldown = 4
+					
+			
+			new_delay = randi_range(0,2) + specific_cooldown
+			rand_attack = randi_range(0,3)
+			$Attack_delay.start(new_delay)
+			print(new_delay)
+			
+			
 				
 func shoot_slimeball() -> void:
-	
 	slimeball_instance = spawn_slimeball.instantiate()
 	owner.add_child(slimeball_instance)
-	slimeball_instance.global_position = global_position
+	slimeball_instance.global_position = global_position + to_local(Player.position).normalized()
+	
+func use_slimespike() -> void:
+	slimespike_instance = spawn_slimespike.instantiate()
+	self.add_child(slimespike_instance)
 	
 
 func _on_aggro_radius_body_entered(body: Node2D) -> void:
 	if body is player_:
 		hostile = true
+
+
+func _on_combo_delay_timeout() -> void:
+	combo = false

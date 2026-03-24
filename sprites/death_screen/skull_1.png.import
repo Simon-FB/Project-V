@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjlyu0jj5xgnk"
-path="res://.godot/imported/brick_wall_corner_right.png.png-719e88dc62ac1a36b7925b19deec9b51.ctex"
+uid="uid://bih74h2l4ejuk"
+path="res://.godot/imported/skull_1.png-66007384b2a8d8ca8fd8b2a275265a60.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/brick_walls/brick_wall_corner_right.png.png"
-dest_files=["res://.godot/imported/brick_wall_corner_right.png.png-719e88dc62ac1a36b7925b19deec9b51.ctex"]
+source_file="res://sprites/death_screen/skull_1.png"
+dest_files=["res://.godot/imported/skull_1.png-66007384b2a8d8ca8fd8b2a275265a60.ctex"]
 
 [params]
 

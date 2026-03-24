@@ -5,10 +5,13 @@ class_name player_
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Anim.play("idle_right")
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if world.reset == true:
+		queue_free()
 	
 	#GET POSITION
 	Player.position = global_position
@@ -77,9 +80,9 @@ func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_SPACE) and Player.can_dash:
 		Player.effect_list.append("dash")
 		
-	print(Player.speed_modifier)
-	
-	#PLAYER ACTIONS
+	#DEATH
+	if Player.health < 1:
+		queue_free()
 	#ATTACK
 	
 			
@@ -91,7 +94,7 @@ func _process(delta: float) -> void:
 
 	# Parry vs ennemy
 	# vs slime (green)
-		# vs slimeball just bounce off
+		# vs slimeball just dispawns
 		# vs slime whip grab it, spin and slam the slime on a wall (big damage)
 		# vs pounce dodges lets it splat on the ground (stuns)
 		

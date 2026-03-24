@@ -47,18 +47,18 @@ script/source = "extends Area2D
 class_name player_hitbox
 "
 
-[node name="Node2D" type="Node2D" unique_id=1607949030]
+[node name="Slime" type="Node2D" unique_id=1607949030]
 
 [node name="slime" type="CharacterBody2D" parent="." unique_id=1768638926]
+visibility_layer = 2
 collision_layer = 8
-collision_mask = 7
+collision_mask = 23
 script = ExtResource("1_2002g")
 
 [node name="Pathfinder" type="NavigationAgent2D" parent="slime" unique_id=1414083324]
 path_desired_distance = 100.0
 target_desired_distance = 100.0
 path_postprocessing = 1
-debug_enabled = true
 
 [node name="Anim" type="AnimatedSprite2D" parent="slime" unique_id=1450350285]
 texture_filter = 1
@@ -67,6 +67,7 @@ animation = &"idle"
 
 [node name="Aggro_radius" type="Area2D" parent="slime" unique_id=463276462]
 scale = Vector2(9, 9)
+collision_mask = 31
 
 [node name="Aggro_zone" type="CollisionShape2D" parent="slime/Aggro_radius" unique_id=776458024]
 shape = SubResource("CircleShape2D_lrvan")
@@ -86,4 +87,7 @@ polygon = PackedVector2Array(-3.2050934, -2.7026978, -9.615265, 6.081085, -7.051
 [node name="Attack_delay" type="Timer" parent="slime" unique_id=1752134441]
 one_shot = true
 
+[node name="Combo_delay" type="Timer" parent="slime" unique_id=1436391041]
+
 [connection signal="body_entered" from="slime/Aggro_radius" to="slime" method="_on_aggro_radius_body_entered"]
+[connection signal="timeout" from="slime/Combo_delay" to="slime" method="_on_combo_delay_timeout"]
