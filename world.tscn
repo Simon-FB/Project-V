@@ -190,4 +190,22 @@ tile_set = SubResource("TileSet_pkg7o")
 [node name="world_reset_timer" type="Timer" parent="." unique_id=1581921638]
 one_shot = true
 
+[node name="Spawnpoints" type="Node2D" parent="." unique_id=803482695]
+
+[node name="Player_spawnpoints" type="Node2D" parent="Spawnpoints" unique_id=1237501313]
+
+[node name="0" type="Marker2D" parent="Spawnpoints/Player_spawnpoints" unique_id=1592908321]
+position = Vector2(171, 288)
+
+[node name="Slime_spawnpoints" type="Node2D" parent="Spawnpoints" unique_id=841032007]
+
+[node name="0" type="Marker2D" parent="Spawnpoints/Slime_spawnpoints" unique_id=2141857980]
+position = Vector2(288, 330)
+
+[node name="1" type="Marker2D" parent="Spawnpoints/Slime_spawnpoints" unique_id=1587895587]
+position = Vector2(527, 363)
+
+[node name="2" type="Marker2D" parent="Spawnpoints/Slime_spawnpoints" unique_id=1120967318]
+position = Vector2(700, 355)
+
 [connection signal="timeout" from="world_reset_timer" to="." method="_on_world_reset_timer_timeout"]

@@ -33,18 +33,24 @@ func world_init():
 
 func _on_world_reset_timer_timeout() -> void:
 	world.reset = false
-	
-	spawn_player = preload("res://player.tscn")
-	load_effect_maneger = preload("res://effect_manager.tscn")
-	spawn_slime = preload("res://slime.tscn")
 
+	spawn_player = preload("res://player.tscn")
+	spawn_player = spawn_player.instantiate()
+	spawn_player.global_position = (
+		$Spawnpoints/Player_spawnpoints
+		.get_child(Player.checkpoint)
+		.global_position
+		)
+	add_child(spawn_player)
+	
+	load_effect_maneger = preload("res://effect_manager.tscn")
 	load_effect_maneger = load_effect_maneger.instantiate()
 	add_child(load_effect_maneger)
 	
-	spawn_player = spawn_player.instantiate()
-	spawn_player.global_position = Vector2(200.0,280.0)
-	add_child(spawn_player)
 	
-	spawn_slime = spawn_slime.instantiate()
-	spawn_slime.global_position = Vector2(312.0,312.0)
-	add_child(spawn_slime)
+	for i in range($Spawnpoints/Slime_spawnpoints.get_child_count()):
+		spawn_slime = preload("res://slime.tscn")
+		spawn_slime = spawn_slime.instantiate()
+		spawn_slime.global_position = ($Spawnpoints/Slime_spawnpoints
+			.get_child(i).global_position)
+		add_child(spawn_slime)

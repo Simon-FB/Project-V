@@ -31,33 +31,32 @@ func _physics_process(delta: float) -> void:
 		next_point = to_local($Pathfinder.get_current_navigation_path()[1]).normalized()
 		
 		velocity = next_point * delta * Ennemy.slime_speed
-		move_and_slide()
+		if $Pathfinder.distance_to_target() > 30:
+			move_and_slide()
 		
 		#attack
 		if Player.effect_list.has("slow") and not combo:
-				rand_attack = 3
+				rand_attack = 2
 				$Attack_delay.stop()
-				print("cancel")
 				$Combo_delay.start(4)
 				combo = true
 				
 		if $Attack_delay.is_stopped():
 			match rand_attack:
-				0,1,2:
+				0,1:
 					shoot_slimeball()
 					shoot_slimeball()
 					shoot_slimeball()
 					
 					specific_cooldown = 0.5
-				3:
+				2:
 					use_slimespike()
 					specific_cooldown = 4
 					
 			
 			new_delay = randi_range(0,2) + specific_cooldown
-			rand_attack = randi_range(0,3)
+			rand_attack = randi_range(0,2)
 			$Attack_delay.start(new_delay)
-			print(new_delay)
 			
 			
 				

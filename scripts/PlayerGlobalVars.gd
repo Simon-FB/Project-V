@@ -2,6 +2,7 @@ extends Node
 
 var health = 1
 var anim_speed = 1.0
+var checkpoint = 0
 
 #MOVEMENT
 var last_direction = ""

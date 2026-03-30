@@ -15,9 +15,6 @@ func _process(_delta: float) -> void:
 			Player.anim_speed = 0.5
 			$Slow_time.start(3)
 			had_slow = true
-			Player.effect_list.erase("dash")
-			Player.can_dash = false
-			$Dash_Cooldown.start(2)
 	else:
 		if had_slow:
 			Player.speed_modifier *= 2
