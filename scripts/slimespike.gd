@@ -1,15 +1,12 @@
 extends CharacterBody2D
-var start_anim = false
 var correction = randf_range(1.35,1.5)
 var in_hitbox = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$anim.play("attack")
-	
 
 func _process(_delta: float) -> void:
-	print(in_hitbox)
 	if world.reset == true:
 		queue_free()
 		

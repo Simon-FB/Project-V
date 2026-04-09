@@ -25,6 +25,7 @@ func _process(_delta: float) -> void:
 
 func world_init():
 	Player.health = 1
+	Player.effect_list = []
 	deathscreen_loaded = false
 	world.reset = true
 	world.reset_command = false

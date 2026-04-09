@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://bulwxuln5j1x0"]
+
+[ext_resource type="Script" uid="uid://bsebxc0g7hmr" path="res://scripts/slash.gd" id="1_bf50k"]
+[ext_resource type="Texture2D" uid="uid://4hyd1174ln7c" path="res://sprites/player/slash/slash_0.png" id="2_4addw"]
+[ext_resource type="Texture2D" uid="uid://dysuoefwgc0sk" path="res://sprites/player/slash/slash_1.png" id="3_fpgu2"]
+[ext_resource type="Texture2D" uid="uid://ckmw1a4i1t542" path="res://sprites/player/slash/slash_2.png" id="4_rsgym"]
+[ext_resource type="Texture2D" uid="uid://ckwb0qyxanhcd" path="res://sprites/player/slash/slash_3.png" id="5_k6bh1"]
+[ext_resource type="Texture2D" uid="uid://xxq28lnmkv6" path="res://sprites/player/slash/slash_4.png" id="6_im7rg"]
+[ext_resource type="Texture2D" uid="uid://bphnlnuw43qm2" path="res://sprites/player/slash/slash_5.png" id="7_uw8n4"]
+[ext_resource type="Texture2D" uid="uid://ke1j8ulemxxv" path="res://sprites/player/slash/slash_6.png" id="8_ga4w7"]
+[ext_resource type="Texture2D" uid="uid://cwjng0x1u7tvh" path="res://sprites/player/slash/slash_7.png" id="9_euyl5"]
+[ext_resource type="Texture2D" uid="uid://cyw70jmlgx1ln" path="res://sprites/player/slash/slash_8.png" id="10_7x7gw"]
+[ext_resource type="Texture2D" uid="uid://bv5fo7r8ghomh" path="res://sprites/player/slash/slash_9.png" id="11_3iu4q"]
+[ext_resource type="Texture2D" uid="uid://pkin076fk2ip" path="res://sprites/player/slash/slash_10.png" id="12_wi4mp"]
+[ext_resource type="Texture2D" uid="uid://de41ixa5jo6bq" path="res://sprites/player/slash/slash_11.png" id="13_i8arh"]
+[ext_resource type="Texture2D" uid="uid://dnfg7kgh8p5jf" path="res://sprites/player/slash/slash_12.png" id="14_utyx0"]
+[ext_resource type="Texture2D" uid="uid://dnmjot21ujaco" path="res://sprites/player/slash/slash_13.png" id="15_t0iom"]
+[ext_resource type="Texture2D" uid="uid://0ts0khqbfddq" path="res://sprites/player/slash/slash_14.png" id="16_nj70d"]
+[ext_resource type="Texture2D" uid="uid://cufl5fmmarfd5" path="res://sprites/player/slash/slash_15.png" id="17_ijguq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tocf0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4addw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fpgu2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rsgym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_k6bh1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_im7rg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_uw8n4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ga4w7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_euyl5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_7x7gw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_3iu4q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_wi4mp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_i8arh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_utyx0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_t0iom")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_nj70d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ijguq")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 35.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4addw"]
+radius = 0.0
+
+[node name="Slash" type="Node2D" unique_id=283322639]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=200748724]
+collision_layer = 4
+collision_mask = 16
+script = ExtResource("1_bf50k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=603506095]
+texture_filter = 1
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_tocf0")
+animation = &"attack"
+frame = 15
+frame_progress = 1.0
+
+[node name="hitbox" type="Area2D" parent="CharacterBody2D" unique_id=850965077]
+position = Vector2(0, -12)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D/hitbox" unique_id=584175441]
+polygon = PackedVector2Array(-12, -5, -6, -15, 8, -15, 14, -5, 14, 12, -12, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=2030535117]
+shape = SubResource("CircleShape2D_4addw")

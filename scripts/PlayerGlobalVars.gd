@@ -13,3 +13,11 @@ var can_dash = true
 
 #EFFECTS
 var effect_list = []
+
+# POWER UPS
+var unlock_dash = false
+var unlock_shield = false
+var unlock_parry = false
+var unlock_attack = false
+var unlock_shadow_form = false #temp invincibility (upgraded dash)
+var unlock_bow = false #arrows on cooldown

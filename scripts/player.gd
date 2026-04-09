@@ -2,13 +2,13 @@ extends CharacterBody2D
 
 class_name player_
 
-var spawn_shadowslash
-
+var spawn_slash
+var closest_target = world.center
+var target_list = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Anim.play("idle_right")
 	
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -79,9 +79,11 @@ func _process(delta: float) -> void:
 								$Anim.play("idle_down_left")
 	
 	#DASH (no iframes)
-	if (Input.is_action_pressed("dash") 
+	if (Input.is_action_pressed("dash")
+	and Player.unlock_dash
 	and Player.can_dash 
-	and not(Player.effect_list.has("slow"))):
+	and not(Player.effect_list.has("slow"))
+	and not Player.unlock_shadow_form):
 		
 		Player.effect_list.append("dash")
 		
@@ -90,17 +92,41 @@ func _process(delta: float) -> void:
 		queue_free()
 		
 		
-	#ATTACK
-	#shadowblade
-	if (Input.is_action_pressed("attack")):
-		spawn_shadowslash = preload("res://shadowslash.tscn")
-		spawn_shadowslash = spawn_shadowslash.instantiate()
-		spawn_shadowslash.global_position = Player.position
-		add_child(spawn_shadowslash)
 		
+	#ATTACK
+	#slash
+	
+		#find closest target
+	target_list = $slash_range.get_overlapping_bodies()
+	target_list.erase(self)
+	for i in target_list:
+		if (i.global_position.distance_to(Player.position)
+		< (closest_target.global_position.distance_to(Player.position))
+		and i != self):
+			closest_target = i
+			
+	if target_list == []:
+		closest_target == world.center
+		
+		
+		#trigger
+	if (
+	Input.is_action_pressed("attack") 
+	and target_list 
+	and closest_target != world.center
+	and $slash_cooldown.is_stopped()):
+		
+		spawn_slash = preload("res://slash.tscn")
+		spawn_slash = spawn_slash.instantiate()
+		spawn_slash.global_position = Player.position
+		add_child(spawn_slash)
+		
+		Ennemy.take_damage.append(closest_target)
+		closest_target = world.center
+		$slash_cooldown.start(1)
 			
 			
-	#BLOCK / PARRY (crazy ass deflects(...reported :( ))
+	#BLOCK / PARRY (deflects(animations reported to later :( ))
 	#Ideas
 	# shadow form has 3 charges
 	# blocking consumes one charge and negates all damage (knocks u back a bit)
@@ -119,4 +145,3 @@ func _process(delta: float) -> void:
 		
 	if (Input.is_action_pressed("block")):
 		pass
-	

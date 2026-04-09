@@ -10,6 +10,7 @@ var new_delay
 var rand_attack = 0
 var specific_cooldown = 0
 var combo = false
+var hp = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,6 +22,15 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if world.reset == true:
 		queue_free()
+		
+	for i in Ennemy.take_damage:
+		if i == self:
+			hp -= 1
+			print("blup")
+			
+	if hp < 1:
+		queue_free()
+		print("splortch")
 	
 	if Player.health < 1:
 		hostile = false
