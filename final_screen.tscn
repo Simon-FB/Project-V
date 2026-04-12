@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://drojo7kvslbv"]
+
+[ext_resource type="Texture2D" uid="uid://cg8onuteht3b2" path="res://sprites/death_screen/bg.png" id="1_buil8"]
+[ext_resource type="Texture2D" uid="uid://dk6ip310owugj" path="res://sprites/player/knight_down.png" id="2_ldovj"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_qqdnn"]
+diffuse_texture = ExtResource("1_buil8")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mjgpm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ldovj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Final screen" type="Control" unique_id=1933712429]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=628259771]
+z_index = 999
+texture_filter = 1
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+scale = Vector2(0.99980783, 0.99997574)
+texture = SubResource("CanvasTexture_qqdnn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TextureRect" unique_id=770689721]
+position = Vector2(576.11066, 175.00424)
+scale = Vector2(7.441238, 6.8001413)
+sprite_frames = SubResource("SpriteFrames_mjgpm")
+
+[node name="Label" type="Label" parent="TextureRect" unique_id=576693479]
+layout_mode = 0
+offset_left = 402.07727
+offset_top = 406.00986
+offset_right = 780.1499
+offset_bottom = 521.0127
+theme_override_font_sizes/font_size = 50
+text = "You win"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="TextureRect" unique_id=2042007662]
+position = Vector2(576.1107, 325.00787)
+scale = Vector2(7.441237, 6.8001423)

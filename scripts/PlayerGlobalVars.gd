@@ -11,10 +11,18 @@ var position
 var speed_modifier = 100.0000
 var can_dash = true
 
+#ACTIONS
+var can_block = true
+var attack_cooldown = 1
+var block_time = 2
+var block_cooldown = 2
+
+
 #EFFECTS
 var effect_list = []
 
 # POWER UPS
+var power_up_count = 0
 var unlock_dash = false
 var unlock_shield = false
 var unlock_parry = false

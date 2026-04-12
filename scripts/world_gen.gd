@@ -5,10 +5,20 @@ var load_effect_maneger
 var spawn_slime
 var load_deathscreen 
 var deathscreen_loaded
+var spawn_powerup
+var finalscreen_loaded
+var load_finalscreen
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	world_init()
+
+	for i in range($Spawnpoints/Powerup_spawnpoint.get_child_count()):
+		spawn_powerup = preload("res://power_up.tscn")
+		spawn_powerup = spawn_powerup.instantiate()
+		spawn_powerup.global_position = ($Spawnpoints/Powerup_spawnpoint
+			.get_child(i).global_position)
+		add_child(spawn_powerup)
 
 	
 func _process(_delta: float) -> void:
@@ -17,6 +27,12 @@ func _process(_delta: float) -> void:
 		load_deathscreen = load_deathscreen.instantiate()
 		add_child(load_deathscreen)
 		deathscreen_loaded = true
+		
+	if Player.power_up_count == 8 and not(finalscreen_loaded):
+		load_finalscreen = preload("res://final_screen.tscn")
+		load_finalscreen = load_finalscreen.instantiate()
+		add_child(load_finalscreen)
+		finalscreen_loaded = true
 		
 	if world.reset_command:
 		world.reset_command = false
@@ -55,3 +71,4 @@ func _on_world_reset_timer_timeout() -> void:
 		spawn_slime.global_position = ($Spawnpoints/Slime_spawnpoints
 			.get_child(i).global_position)
 		add_child(spawn_slime)
+		

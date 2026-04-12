@@ -20,17 +20,16 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	if world.reset == true:
+	if world.reset == true or Player.power_up_count == 8:
 		queue_free()
 		
 	for i in Ennemy.take_damage:
 		if i == self:
 			hp -= 1
-			print("blup")
+			Ennemy.take_damage.erase(i)
 			
 	if hp < 1:
 		queue_free()
-		print("splortch")
 	
 	if Player.health < 1:
 		hostile = false
@@ -45,7 +44,9 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 		
 		#attack
-		if Player.effect_list.has("slow") and not combo:
+		if (Player.effect_list.has("slow") 
+		and not combo 
+		and global_position.distance_to(Player.position) < 70):
 				rand_attack = 2
 				$Attack_delay.stop()
 				$Combo_delay.start(4)
@@ -57,8 +58,8 @@ func _physics_process(delta: float) -> void:
 					shoot_slimeball()
 					shoot_slimeball()
 					shoot_slimeball()
-					
 					specific_cooldown = 0.5
+					
 				2:
 					use_slimespike()
 					specific_cooldown = 4
@@ -79,11 +80,9 @@ func use_slimespike() -> void:
 	slimespike_instance = spawn_slimespike.instantiate()
 	self.add_child(slimespike_instance)
 	
-
 func _on_aggro_radius_body_entered(body: Node2D) -> void:
 	if body is player_:
 		hostile = true
-
 
 func _on_combo_delay_timeout() -> void:
 	combo = false

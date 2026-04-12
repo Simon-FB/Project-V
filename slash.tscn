@@ -71,7 +71,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack",
-"speed": 35.0
+"speed": 45.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4addw"]
@@ -100,3 +100,5 @@ polygon = PackedVector2Array(-12, -5, -6, -15, 8, -15, 14, -5, 14, 12, -12, 12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=2030535117]
 shape = SubResource("CircleShape2D_4addw")
+
+[connection signal="animation_finished" from="CharacterBody2D/AnimatedSprite2D" to="CharacterBody2D" method="_on_animated_sprite_2d_animation_finished"]

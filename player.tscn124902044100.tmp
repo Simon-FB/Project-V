@@ -524,15 +524,6 @@ offset_right = 34.476204
 offset_bottom = 22.909088
 scale = Vector2(0.44785392, 0.4424881)
 
-[node name="keybind" type="Label" parent="player/HUD/Block" unique_id=1468221998]
-texture_filter = 1
-offset_left = -8.333317
-offset_top = 8.999994
-offset_right = 55.666683
-offset_bottom = 31.999994
-scale = Vector2(0.25737768, 0.27906615)
-text = "right click"
-
 [node name="Dash" type="AnimatedSprite2D" parent="player/HUD" unique_id=19152448]
 texture_filter = 1
 position = Vector2(-150.66673, 71.68179)
@@ -554,15 +545,6 @@ offset_top = -0.090911865
 offset_right = 33.952385
 offset_bottom = 22.909088
 scale = Vector2(0.44785392, 0.4424881)
-
-[node name="keybind" type="Label" parent="player/HUD/Dash" unique_id=881307058]
-texture_filter = 1
-offset_left = -6.4761944
-offset_top = 8.999994
-offset_right = 57.523804
-offset_bottom = 31.999994
-scale = Vector2(0.25737768, 0.27906615)
-text = "Space"
 
 [node name="Bow" type="AnimatedSprite2D" parent="player/HUD" unique_id=482926807]
 texture_filter = 1
@@ -586,15 +568,6 @@ offset_right = 33.952385
 offset_bottom = 22.909088
 scale = Vector2(0.44785392, 0.4424881)
 
-[node name="keybind" type="Label" parent="player/HUD/Bow" unique_id=1555131788]
-texture_filter = 1
-offset_left = -2.5237665
-offset_top = 8.999994
-offset_right = 61.476234
-offset_bottom = 31.999994
-scale = Vector2(0.25737768, 0.27906615)
-text = "E"
-
 [node name="Slash" type="AnimatedSprite2D" parent="player/HUD" unique_id=1833610138]
 texture_filter = 1
 position = Vector2(-82.66673, 71.68179)
@@ -616,15 +589,6 @@ offset_top = -0.090911865
 offset_right = 33.952385
 offset_bottom = 22.909088
 scale = Vector2(0.44785392, 0.4424881)
-
-[node name="keybind" type="Label" parent="player/HUD/Slash" unique_id=1961857447]
-texture_filter = 1
-offset_left = -8.333317
-offset_top = 8.999994
-offset_right = 55.666683
-offset_bottom = 31.999994
-scale = Vector2(0.25737768, 0.27906615)
-text = "left click"
 
 [node name="Dash_timer" type="Timer" parent="player/HUD" unique_id=1059137977]
 one_shot = true
