@@ -11,7 +11,7 @@ func _process(_delta: float) -> void:
 	
 	#Effects
 	if Player.effect_list.has("slow"):
-		if not(had_slow):
+		if not(had_slow) and not Player.effect_list.has("block"):
 			Player.speed_modifier /= 2
 			Player.anim_speed = 0.5
 			$Slow_time.start(3)
@@ -43,6 +43,8 @@ func _process(_delta: float) -> void:
 		had_invincible = false
 	
 	if Player.effect_list.has("block"):
+		if not had_slow:
+			Player.effect_list.erase("slow")
 		if not(had_block):
 			$Block_time.start(2)
 		had_block = true
