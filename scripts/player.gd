@@ -63,7 +63,7 @@ func _process(delta: float) -> void:
 		$HUD/Dash/cd.text = "Ready"
 		$HUD/Dash.play("ready")
 	else:
-		$HUD/Dash/cd.text = str(snappedf($HUD/Dash_timer.time_left,0.1))
+		$HUD/Dash/cd.text = str(snappedf($HUD/Dash_timer.time_left,0.01))
 		$HUD/Dash.play("on_cd")
 	
 	if $HUD/Slash_timer.is_stopped():
@@ -187,7 +187,6 @@ func _process(delta: float) -> void:
 		$slash_cooldown.start(1)
 		$HUD/Slash_timer.start(1)
 			
-
 	
 	#BLOCK / PARRY
 	if (Input.is_action_pressed("block")

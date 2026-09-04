@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Project_V"
 run/main_scene="uid://dfpbfa1q5jtms"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 boot_splash/bg_color=Color(1, 1, 1, 1)
 
 [autoload]
